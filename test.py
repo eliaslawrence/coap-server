@@ -9,7 +9,7 @@ from coapthon.utils import parse_uri
 client = None
 
 def usage():  # pragma: no cover
-    print "Command:\tcoapclient.py -o -p [-P] [-u]"
+    print "Command:\ttest.py -o -p [-P] [-u]"
     print "Options:"
     print "\t-o, --operation=\tGET|POST|DELETE"
     print "\t-p, --path=\t\tPath of the request"
