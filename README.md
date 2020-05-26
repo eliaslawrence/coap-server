@@ -22,5 +22,27 @@ $ sudo pip install CoAPthon
 
 <p align="center">
   <img src="/imgs/diagram.png" width="300">
-  <em>Diagrama de operação da aplicação com CoAP</em>
+  <p><em>Diagrama de operação da aplicação com CoAP</em></p>
 </p>
+
+### Ambiente
+
+
+
+### Servidor
+
+### Cliente
+
+### test.py
+
+Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador
+
+POST
+```
+$ python test.py -P POST -p coap://<your-ip-here>:5683/<resource> -P <payload>
+```
+
+GET
+```
+$ python test.py -P GET -p coap://<your-ip-here>:5683/<resource>
+```
