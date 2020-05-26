@@ -27,9 +27,29 @@ $ sudo pip install CoAPthon
   <em>Diagrama de operação da aplicação com CoAP</em>
 </p>
 
+### test.py
+
+Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador
+
+- POST
+```
+$ python test.py -P POST -p coap://<your-ip-here>:5683/<resource> -P <payload>
+```
+
+- GET
+```
+$ python test.py -P GET -p coap://<your-ip-here>:5683/<resource>
+```
+
 ### Ambiente
 
+- Inicializar
 
+Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. Se for da preferência do usuário, testes podem ser executados através do arquivo [test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py), sem a necessidade do emulador.
+
+```
+$ python environment.py <your-ip-here> <your-port-here>
+```
 
 ### Servidor
 
@@ -58,27 +78,14 @@ Caso os valores ultrapassem os limiares predeterminados, os LEDs se acendem na c
   <em>Valores de temperatura e/ou pressão acima do THRESHOLD</em>
 </p>
 
-Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina.
-
 - Inicializar
+
+Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. Se for da preferência do usuário, testes podem ser executados através do arquivo [test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py), sem a necessidade do emulador.
+
 ```
 $ python client.py <your-ip-here> <your-port-here>
 ```
 
-O programa irá pedir para que informe o ID do ambiente que deseja vigiar. A seguir, irá pedir que o usuário sete os limiares (THRESHOLD) de temperatura.
+O programa irá pedir para que informe o ID do ambiente que deseja vigiar. A seguir, irá pedir que o usuário sete os limiares (THRESHOLD) de temperatura e pressão.
 
 Durante a execução do programa, o usuário pode mudar de ambiente ou reconfigurar os THRESHOLDS.
-
-### test.py
-
-Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador
-
-- POST
-```
-$ python test.py -P POST -p coap://<your-ip-here>:5683/<resource> -P <payload>
-```
-
-- GET
-```
-$ python test.py -P GET -p coap://<your-ip-here>:5683/<resource>
-```
