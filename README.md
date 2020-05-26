@@ -21,8 +21,10 @@ $ sudo pip install CoAPthon
 ## Operação
 
 <p align="center">
-  <img src="/imgs/diagram.png" width="300">
-  <p><em>Diagrama de operação da aplicação com CoAP</em></p>
+  <img src="/imgs/diagram.png" width="300">  
+</p>
+<p align="center">
+  <em>Diagrama de operação da aplicação com CoAP</em>
 </p>
 
 ### Ambiente
@@ -32,6 +34,20 @@ $ sudo pip install CoAPthon
 ### Servidor
 
 ### Cliente
+
+<p align="center">
+  <img src="/imgs/sensehat.png" width="300">  
+</p>
+<p align="center">
+  <em>Cliente em estado IDLE</em>
+</p>
+
+<p align="center">
+  <img src="/imgs/sensehat1.png" width="300">  
+</p>
+<p align="center">
+  <em>Valores de temperatura e/ou pressão acima do THRESHOLD</em>
+</p>
 
 ### test.py
 
