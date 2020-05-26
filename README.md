@@ -22,4 +22,5 @@ $ sudo pip install CoAPthon
 
 <p align="center">
   <img src="/imgs/diagram.png" width="300">
+  <em>Diagrama de operação da aplicação com CoAP</em>
 </p>
