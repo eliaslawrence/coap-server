@@ -27,21 +27,27 @@ $ sudo pip install CoAPthon
   <em>Diagrama de operação da aplicação com CoAP</em>
 </p>
 
-### test.py
+### Teste ([test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py))
 
 Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador
 
 - POST
 ```
-$ python test.py -P POST -p coap://<your-ip-here>:5683/<resource> -P <payload>
+$ python test.py -P POST -p coap://<your-ip-here>:<your-port-here>/<resource> -P <payload>
 ```
 
 - GET
 ```
-$ python test.py -P GET -p coap://<your-ip-here>:5683/<resource>
+$ python test.py -P GET -p coap://<your-ip-here>:<your-port-here>/<resource>
 ```
 
-### Ambiente
+### Ambiente ([environment.py](https://github.com/eliaslawrence/coap-server/blob/master/environment.py))
+
+Com a ajuda do emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat), simula sensores de temperatura e pressão em um determinado ambiente. 
+
+O usuário pode setar um ambiente cujos recursos (temperatura e pressão) já estejam adicionados ao servidor, como também pode criar um novo ambiente.
+
+Um ambiente nada mais é do que uma virtualização dos sensores de temperatura e pressão. Logo, a criação de um ambbiente consiste em adicionar recursos para esses sensores no servidor.
 
 - Inicializar
 
@@ -51,14 +57,24 @@ Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspber
 $ python environment.py <your-ip-here> <your-port-here>
 ```
 
-### Servidor
+O programa irá pedir para que informe o ID do ambiente ou se deseja criar outro. 
+
+Durante a execução do programa, o usuário pode mudar de ambiente ou criar um outro..
+
+### Servidor ([server.py](https://github.com/eliaslawrence/coap-server/blob/master/server.py))
+
+O servidor é inicializado com apenas um META-resource (ADD) responsável pela criação de novos resources (recursos) referentes aos sensores dos ambientes.
+
+Através de um método POST para o resource '/add' do servidor, passando como payload um ID, estamos, então, criando um novo resource '/<new-id>'. Agora podemos acessar esse novo recurso através dos métodos POST, GET...
+  
+O servidor escuta as aplicações AMBIENTE, criando recursos para novos sensores e recebendo valores de temperatura e pressão. Por outro lado, recebe requisições das aplicações CLIENTE, requisitando valores de temperatura e pressão de um determinado ambiente.
 
 - Inicializar
 ```
 $ python server.py <your-ip-here> <your-port-here>
 ```
 
-### Cliente
+### Cliente ([client.py](https://github.com/eliaslawrence/coap-server/blob/master/client.py))
 
 As aplicações CLIENTE acessam o servidor requisitam os valores dos sensores de temperatura e pressão do AMBIENTE escolhido.
 
