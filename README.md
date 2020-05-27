@@ -29,16 +29,16 @@ $ sudo pip install CoAPthon
 
 ### Teste ([test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py))
 
-Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador
+Arquivo responsável pela realização dos testes das operações POST, GET e DELETE sem  necessidade do emulador.
 
 - POST
 ```
-$ python test.py -P POST -p coap://<your-ip-here>:<your-port-here>/<resource> -P <payload>
+$ python test.py -P POST -p coap://<server-ip-here>:<server-port-here>/<resource> -P <payload>
 ```
 
 - GET
 ```
-$ python test.py -P GET -p coap://<your-ip-here>:<your-port-here>/<resource>
+$ python test.py -P GET -p coap://<server-ip-here>:<server-port-here>/<resource>
 ```
 
 ### Ambiente ([environment.py](https://github.com/eliaslawrence/coap-server/blob/master/environment.py))
@@ -54,7 +54,7 @@ Um ambiente nada mais é do que uma virtualização dos sensores de temperatura 
 Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. Se for da preferência do usuário, testes podem ser executados através do arquivo [test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py), sem a necessidade do emulador.
 
 ```
-$ python environment.py <your-ip-here> <your-port-here>
+$ python environment.py <server-ip-here> <server-port-here>
 ```
 
 O programa irá pedir para que informe o ID do ambiente ou se deseja criar outro. 
@@ -71,7 +71,7 @@ O servidor escuta as aplicações AMBIENTE, criando recursos para novos sensores
 
 - Inicializar
 ```
-$ python server.py <your-ip-here> <your-port-here>
+$ python server.py <server-ip-here> <server-port-here>
 ```
 
 ### Cliente ([client.py](https://github.com/eliaslawrence/coap-server/blob/master/client.py))
@@ -99,9 +99,79 @@ Caso os valores ultrapassem os limiares predeterminados, os LEDs se acendem na c
 Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. Se for da preferência do usuário, testes podem ser executados através do arquivo [test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py), sem a necessidade do emulador.
 
 ```
-$ python client.py <your-ip-here> <your-port-here>
+$ python client.py <server-ip-here> <server-port-here>
 ```
 
 O programa irá pedir para que informe o ID do ambiente que deseja vigiar. A seguir, irá pedir que o usuário sete os limiares (THRESHOLD) de temperatura e pressão.
 
 Durante a execução do programa, o usuário pode mudar de ambiente ou reconfigurar os THRESHOLDS.
+
+## Exemplo
+
+- IP do servidor: 192.168.25.4
+- Porta do servidor: 5683
+- Inicializa servidor
+
+```
+$ python server.py 192.168.25.4 5683
+```
+
+### Sem emulador para os sensores de temperatura e pressão
+
+- Crie sensor para temperatura com ID **t1**
+
+```
+$ python test.py -P POST -p coap://192.168.25.4:5683/add -P t1
+```
+
+- Sete temperatura em **t1** para 40 graus
+
+```
+$ python test.py -P POST -p coap://192.168.25.4:5683/t1 -P 40
+```
+
+- Crie sensor para pressão com ID 'p1'
+
+```
+$ python test.py -P POST -p coap://192.168.25.4:5683/add -P p1
+```
+
+- Sete pressão em **p1** para 1000 hPa
+
+```
+$ python test.py -P POST -p coap://192.168.25.4:5683/p1 -P 1000
+```
+
+- A temperatura e pressão podem ser alteradas pelo método POST.
+
+### Com emulador para os sensores de temperatura e pressão
+
+- Inicialize o Sense HAT Emulator 
+- Inicialize o simulador de ambiente
+
+```
+$ python environment.py 192.168.25.4 5683
+```
+
+- A temperatura e pressão podem ser alteradas pelo emulador
+
+### Cliente
+
+- Inicialize o Sense HAT Emulator 
+- Inicialize aplicação cliente
+
+```
+$ python client.py 192.168.25.4 5683
+```
+
+- Sete ID do ambiente: 1
+- Sete threshold de temperatura: 50
+- Sete threshold de pressão: 1100
+
+Os LEDs não acenderão.
+
+- Sete threshold de temperatura: 30
+ou
+- Sete threshold de pressão: 900
+
+Os LEDs acenderão.
