@@ -21,7 +21,7 @@ $ sudo pip install CoAPthon
 ## Operação
 
 <p align="center">
-  <img src="/imgs/diagram.png" width="700">  
+  <img src="/imgs/diagram.png" width="800">  
 </p>
 <p align="center">
   <em>Diagrama de operação da aplicação com CoAP</em>
