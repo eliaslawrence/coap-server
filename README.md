@@ -96,7 +96,7 @@ Caso os valores ultrapassem os limiares predeterminados, os LEDs se acendem na c
 
 - Inicializar
 
-Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. Se for da preferência do usuário, testes podem ser executados através do arquivo [test.py](https://github.com/eliaslawrence/coap-server/blob/master/test.py), sem a necessidade do emulador.
+Antes de inicializar o programa, o emulador [Sense HAT](https://projects.raspberrypi.org/en/projects/getting-started-with-the-sense-hat) deve estar rodando na máquina. 
 
 ```
 $ python client.py <server-ip-here> <server-port-here>
